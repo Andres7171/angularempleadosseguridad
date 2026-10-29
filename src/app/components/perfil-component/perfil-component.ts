@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../../models/user';
 import { ServiceEmpleados } from '../../services/service.empleados';
@@ -16,7 +16,8 @@ export class PerfilComponent implements OnInit{
 
   constructor(
     private _router:Router,
-    private _service:ServiceEmpleados
+    private _service:ServiceEmpleados,
+    private _cdr:ChangeDetectorRef
   ){
     this.autorized=false
   }
@@ -26,6 +27,7 @@ export class PerfilComponent implements OnInit{
       this.autorized=true
       this._service.getPerfil().subscribe(response=>{
         this.user=response
+        this._cdr.detectChanges()
       })
     }else{
       this._router.navigate(['/login'])

@@ -15,6 +15,7 @@ export class ServiceEmpleados {
     let request = 'auth/login';
     let json = JSON.stringify(user);
     let header = new HttpHeaders();
+    //let header = new HttpHeaders().set("content-type","application/json")
     header = header.set(
       'authentication',
       'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyRGF0YSI6IntcIklkRW1wbGVhZG9cIjo3ODM5LFwiQXBlbGxpZG9cIjpcIlJFWVwiLFwiT2ZpY2lvXCI6XCJQUkVTSURFTlRFXCIsXCJTYWxhcmlvXCI6NjUwMDAwLFwiRGlyZWN0b3JcIjowfSIsIm5iZiI6MTc5MzE4NzY2OSwiZXhwIjoxNzkzMTg4MjY5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDM3NS8iLCJhdWQiOiJBcGlFbXBsZWFkb3NDb3JlT0F1dGgifQ.sV4VeomV2DRaxLE9w2wTTo6UP4Nxh-WjRiz6Z39RsKk',
@@ -27,9 +28,19 @@ export class ServiceEmpleados {
     let request = 'api/empleados/perfilempleado';
     let header = new HttpHeaders();
     header = header.set(
-      'authentication',
-      'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VyRGF0YSI6IntcIklkRW1wbGVhZG9cIjo3ODM5LFwiQXBlbGxpZG9cIjpcIlJFWVwiLFwiT2ZpY2lvXCI6XCJQUkVTSURFTlRFXCIsXCJTYWxhcmlvXCI6NjUwMDAwLFwiRGlyZWN0b3JcIjowfSIsIm5iZiI6MTc5MzE4NzY2OSwiZXhwIjoxNzkzMTg4MjY5LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo0NDM3NS8iLCJhdWQiOiJBcGlFbXBsZWFkb3NDb3JlT0F1dGgifQ.sV4VeomV2DRaxLE9w2wTTo6UP4Nxh-WjRiz6Z39RsKk',
+      'Authorization','bearer ' + sessionStorage.getItem('token')
     );
     return this._http.get<Empleado>(this.url+request,{headers:header})
   }
+
+  getSubordinados():Observable<Empleado[]>{
+        let request = 'api/empleados/subordinados';
+        let token = sessionStorage.getItem('token')
+        let header= new HttpHeaders()
+          .set('Authorization','bearer '+token)
+        return this._http.get<Empleado[]>(this.url+request,{headers:header})
+
+  }
+
+  
 }

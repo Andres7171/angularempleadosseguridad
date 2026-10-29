@@ -1,13 +1,13 @@
-@if(autorized){
-    <h1>Perfil de usuario</h1>
+@if (autorized) {
+  <h1>Perfil de usuario</h1>
 
+  @if (user) {
     <ul class="list-group">
-        <li class="list-group-item">{{user.idEmpleado}}</li>
-        <li class="list-group-item">{{user.apellido}}</li>
-        <li class="list-group-item">{{user.oficio}}</li>
-        <li class="list-group-item">{{user.salario}}</li>
-        <li class="list-group-item">{{user.director}}</li>
+      <li class="list-group-item">ID: {{ user.idEmpleado }}</li>
+      <li class="list-group-item">Apellido: {{ user.apellido }}</li>
+      <li class="list-group-item">Oficio: {{ user.oficio }}</li>
+      <li class="list-group-item">Salario: {{ user.salario }}</li>
+      <li class="list-group-item">Jefe: {{ user.director }}</li>
     </ul>
+  }
 }
-
-

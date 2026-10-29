@@ -25,7 +25,7 @@ export class LoginComponent {
     let usuario=new User(this.cajaNombre.nativeElement.value,this.cajaPassword.nativeElement.value)
 
     this._service.authUser(usuario).subscribe(response=>{
-      sessionStorage.setItem('token',response)
+      sessionStorage.setItem('token',response.response)
       sessionStorage.setItem('user',this.cajaNombre.nativeElement.value)
       sessionStorage.setItem('password',this.cajaPassword.nativeElement.value)
       this._router.navigate(['/perfil'])
