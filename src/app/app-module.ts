@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MenuComponent } from './components/menu-component/menu-component';
 import { HomeComponent } from './components/home-component/home-component';
 import { ServiceEmpleados } from './services/service.empleados';
+import { AuthGuard } from './guards/auth-guard';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ServiceEmpleados } from './services/service.empleados';
     HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
-  providers: [provideBrowserGlobalErrorListeners(),ServiceEmpleados],
+  providers: [provideBrowserGlobalErrorListeners(),ServiceEmpleados,AuthGuard],
   bootstrap: [App],
 })
 export class AppModule {}

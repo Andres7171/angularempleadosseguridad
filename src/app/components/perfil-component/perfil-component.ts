@@ -23,8 +23,13 @@ export class PerfilComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('token')){
-      this.autorized=true
+    
+      this._service.getPerfil().subscribe(response=>{
+        this.user=response
+        this._cdr.detectChanges()
+      })
+      /*
+      if(sessionStorage.getItem('token')){
       this._service.getPerfil().subscribe(response=>{
         this.user=response
         this._cdr.detectChanges()
@@ -32,6 +37,7 @@ export class PerfilComponent implements OnInit{
     }else{
       this._router.navigate(['/login'])
     }
+      */
   }
 
 }

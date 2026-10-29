@@ -20,14 +20,18 @@ export class SubordinadosComponent implements OnInit{
 
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('token')==null){
+    /*if(sessionStorage.getItem('token')==null){
       this._router.navigate(['/login'])
     }else{
       this._service.getSubordinados().subscribe(response=>{
       this.subordinados=response
       this._cdr.detectChanges()
     })
-    }
+    }*/
+   this._service.getSubordinados().subscribe(response=>{
+      this.subordinados=response
+      this._cdr.detectChanges()
+    })
     
   }
 }
